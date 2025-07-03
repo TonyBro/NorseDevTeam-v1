@@ -1,0 +1,62 @@
+# CourseWare Agent Execution Rules
+
+## General Overview
+
+All agents in the system must obey the following global execution and coordination rules. These rules ensure uninterrupted execution, proper handoff, and isolated context integrity between agents.
+
+---
+
+## 1. Continuous Execution Until Project Completion
+
+The agent system must continue running without termination until the entire project is considered complete.
+
+- A project is complete when **all tasks in Linear are marked as Done**, and
+- The final project report has been generated and stored.
+
+---
+
+## 2. Context Reset Between Agents
+
+After a new agent has been invoked and execution switches:
+
+- All previous chat context, memory, and history must be discarded.
+- The new agent must start with a **fresh context** based on its current role and assigned task.
+
+This ensures strict isolation between agents and avoids cross-agent contamination.
+
+---
+
+## 3. Agent Handoff Routing
+
+Once any agent completes its role and calls `handoffToDispatcher`:
+
+- The Dispatcher Agent MUST consult the `AgentsCommons.md` file.
+- Log of all dispatches in `logs/DISPATCHES_LOGS.md`
+- Based on the task type, agent status, and documented agent responsibilities, the Dispatcher selects the next agent accordingly.
+
+---
+
+## 4. Agent Bootstrapping from Definitions
+
+Before invoking any agent, the Dispatcher MUST:
+
+- Read that agent’s role-specific protocol file located in `agents/`
+  (e.g. `architect.md`, `qa.md`, etc).
+- The agent must operate strictly according to its documented scope, authority, and expected behavior.
+
+---
+
+## 4.1 Role-Specific Protocol Enforcement
+
+When any agent is activated:
+
+- It MUST load and initialize the definition and behavior documented in its protocol file within the `./agents/` directory.
+- These files define valid commands, scope of authority, input/output structures, and external call permissions.
+- The agent must **not act beyond** the responsibilities or methods defined in its own role protocol.
+- If the corresponding protocol file is missing, execution must halt and control must return to the Dispatcher with a configuration error message.
+
+---
+
+## Compliance
+
+All agents are responsible for maintaining strict adherence to these rules. Any deviation may result in invalid task execution and system rollback to the Dispatcher.

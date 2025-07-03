@@ -1,25 +1,22 @@
 Developer agent
-- `@NorseAIDevTeam developTask taskId: "<id>" mode: "implement"`
-- `@NorseAIDevTeam developTask taskId: "<id>" mode: "fix"`
+- `NorseAIDevTeam developTask taskId: "<id>" mode: "implement"`
+- `NorseAIDevTeam developTask taskId: "<id>" mode: "fix"`
 
 Dispatcher agent 
-- `@NorseAIDevTeam handoffToDispatcher args`
+- `NorseAIDevTeam handoffToDispatcher args`
 
 Manager agent 
-- `@NorseAIDevTeam planProject`
+- `NorseAIDevTeam planProject`
 
 QA agent
-- `@NorseAIDevTeam verifyTask taskId: "<task_id>"`
+- `NorseAIDevTeam verifyTask taskId: "<task_id>"`
 
 Architect agent
-- `@NorseAIDevTeam architectProject taskId: "<id>"`
-- `@NorseAIDevTeam planProject` 
+- `NorseAIDevTeam architectProject taskId: "<id>"`
+- `NorseAIDevTeam planProject` 
 
 Dispatcher agent
-- `@NorseAIDevTeam handoffToDispatcher`
+- `NorseAIDevTeam handoffToDispatcher`
 
 User
-- `@NorseAIDispatcher override taskId: "<task_id>" agent: "QA" status: "manual-review" comment: "edge case detected"`
-
-Development Chain Initiator
-- `@NorseAIDevTeam startDevelopmentChain zeplinLink: "<url>" projectTitle: "<title>" projectDescription: "<desc>" technologies: "<tech>" githubRepo: "<repo>"`
+- `NorseAIDispatcher override taskId: "<task_id>" agent: "QA" status: "manual-review" comment: "edge case detected"`
